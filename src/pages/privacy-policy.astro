@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Privacy Policy – KAOS" description="How KAOS handles game data, leaderboards, the tilt sensor, and your privacy.">
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy policy.</h1>
+      <p class="lede">KAOS is a small offline-first game. This page explains the little data it handles and why.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <article class="container prose">
+      <p><strong>Last updated: October 2026.</strong></p>
+
+      <h2>1. Controller and contact</h2>
+      <address class="legal-address">
+        <strong>Emanuele Viglianisi</strong><br />
+        Altenbauerstraße 12<br />
+        4060 Leonding, Austria<br />
+        <a href="mailto:emavgl.app@gmail.com">emavgl.app@gmail.com</a>
+      </address>
+      <p>Privacy questions and data requests can be sent to the address above.</p>
+
+      <h2>2. What KAOS is</h2>
+      <p>KAOS is an Android survival game. You tilt your phone to roll a ball around an arena, dodge hazards, and try to survive. The game can be played entirely offline; only the optional leaderboards use the network.</p>
+
+      <h2>3. Data stored on your device</h2>
+      <p>KAOS keeps a small amount of data in the app's private storage on your phone:</p>
+      <ul>
+        <li>Your best score and current settings (nickname, audio level, score orientation, and leaderboard server address).</li>
+        <li>A randomly generated installation identifier used to associate leaderboard submissions with the same install.</li>
+      </ul>
+      <p>This data stays on your device until you clear the app's data or uninstall KAOS. We do not receive it unless you submit a score to a leaderboard.</p>
+
+      <h2>4. Tilt sensor</h2>
+      <p>KAOS reads your device's motion/orientation sensor to steer the ball. Sensor readings are processed on your device in real time and are not recorded, stored, or transmitted.</p>
+
+      <h2>5. Leaderboards (optional)</h2>
+      <p>When you choose to submit a score, KAOS sends the following to the leaderboard server:</p>
+      <ul>
+        <li>the nickname you entered (up to 20 characters),</li>
+        <li>your survival time / score,</li>
+        <li>the randomly generated installation identifier.</li>
+      </ul>
+      <p>The leaderboard server stores this to display weekly and all-time rankings to other players. No account, email address, or password is required. The nickname is public on the leaderboard, so do not use your real name if you do not want it shown. The official KAOS leaderboard server uses HTTPS. If you point the app at a server you run yourself, that server's operator is responsible for the data it receives.</p>
+
+      <h2>6. Sharing</h2>
+      <p>KAOS can share your survival time through Android's share sheet. The text is handed to the app you choose (for example a messaging app); KAOS does not receive or store what you share.</p>
+
+      <h2>7. Purchases</h2>
+      <p>KAOS does not currently offer in-app purchases or subscriptions. If paid features are added later, payments will be processed by Google Play and this policy will be updated.</p>
+
+      <h2>8. No ads, analytics, or tracking</h2>
+      <p>KAOS contains no advertising SDKs, no third-party analytics, no crash-reporting SDK, and no tracking. We do not build profiles or sell data.</p>
+
+      <h2>9. This website</h2>
+      <p>This website is a static site hosted on GitHub Pages. It does not use cookies, analytics, advertising, accounts, or a contact form. GitHub, as the hosting provider, may process technical request data (such as IP address, time, requested URL, and browser information) to deliver and protect the site, under GitHub's own privacy policy.</p>
+
+      <h2>10. Children</h2>
+      <p>KAOS is a general-audience game and is not directed at children under 13. We do not knowingly collect personal information from children. Leaderboard participation is optional and requires only a nickname.</p>
+
+      <h2>11. Retention and deletion</h2>
+      <p>Leaderboard entries remain on the server while the rankings are published. You can ask us to delete a leaderboard entry by emailing <a href="mailto:emavgl.app@gmail.com">emavgl.app@gmail.com</a> with the nickname and approximate score so we can find it. Local data is deleted when you clear the app's data or uninstall KAOS.</p>
+
+      <h2>12. Your rights</h2>
+      <p>Subject to applicable law, you may request access, rectification, erasure, restriction of processing, data portability, or object to processing. Contact the controller above. You may also complain to the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at/" target="_blank" rel="noopener noreferrer">Datenschutzbehörde</a>).</p>
+
+      <h2>13. Changes</h2>
+      <p>This policy may be updated when the game, services, or legal requirements change. The current version is published on this page with its effective date.</p>
+
+      <p class="small-note">See also: <a href={`${base}data-safety`}>Data safety</a> and <a href={`${base}content-rating`}>Content rating</a>.</p>
+    </article>
+  </section>
+</Layout>

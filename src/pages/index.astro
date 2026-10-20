@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+const playUrl = 'https://play.google.com/store/apps/details?id=eu.viglianisi.kaos';
+
+const features = [
+  {
+    title: 'Tilt controls',
+    body: 'Gravity is the only controller. Lean your phone to steer the ball, or use the on-screen keys on devices without a sensor.',
+  },
+  {
+    title: 'Rising chaos',
+    body: 'Walls crumble away, earthquakes shake the arena, and meteors fall faster the longer you survive.',
+  },
+  {
+    title: 'Leaderboards',
+    body: 'Climb the weekly and all-time rankings. Pick a nickname, post a run, and see who else is still alive.',
+  },
+  {
+    title: 'Share your run',
+    body: 'Send your survival time to friends and challenge them to beat it.',
+  },
+  {
+    title: 'Quick sessions',
+    body: 'Runs start in seconds and take a moment to learn — perfect for a short break.',
+  },
+  {
+    title: 'Small and offline',
+    body: 'A tiny download with no clutter. The game works offline; only the leaderboards need a connection.',
+  },
+];
+---
+
+<Layout title="KAOS – Tilt. Dodge. Survive." description="KAOS is a fast, one-thumb survival game for Android. Tilt your phone to roll the ball, dodge crumbling walls and fireballs, and survive the chaos.">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">A one-thumb survival game</p>
+      <h1>KA<span class="accent">O</span>S</h1>
+      <p class="lede">Tilt to roll. Dodge crumbling walls and fireballs. Survive the chaos for as long as you can.</p>
+      <div class="actions">
+        <a class="button button-primary" href={playUrl} target="_blank" rel="noopener">Get it on Google Play</a>
+        <a class="button button-secondary" href={`${base}#how-to-play`}>How to play</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="shots">
+    <img src={`${base}screenshots/menu.jpg`} alt="KAOS main menu" width="1440" height="3120" loading="lazy" />
+    <img src={`${base}screenshots/gameplay-26.jpg`} alt="KAOS gameplay with a 26 second run" width="1440" height="3120" loading="lazy" />
+    <img src={`${base}screenshots/gameplay-19.jpg`} alt="KAOS gameplay with a 19 second run" width="1440" height="3120" loading="lazy" />
+  </div>
+
+  <section class="section" id="how-to-play">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Easy to learn. Hard to survive.</h2>
+        <p>Lean the phone, stay on the walls, and keep moving. The arena is not on your side.</p>
+      </div>
+      <div class="feature-grid">
+        {features.map((f) => (
+          <article class="feature-card">
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container narrow">
+      <div class="section-heading">
+        <h2>How a run works</h2>
+        <p>Points come from contact, not from waiting.</p>
+      </div>
+      <div class="prose" style="margin: 0 auto;">
+        <ol>
+          <li>Tilt your phone to move the ball in any direction.</li>
+          <li>The ball stays still when the phone is flat.</li>
+          <li>You only score while touching a wall segment.</li>
+          <li>The segment you touch starts disappearing — move to another.</li>
+          <li>Meteors fly in from the corners. Dodge them.</li>
+          <li>Walls vanish in bigger chunks as time goes on, and random earthquakes shake the screen.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-inner">
+      <div>
+        <h2>How long can you survive the chaos?</h2>
+        <p>Download KAOS and find out.</p>
+      </div>
+      <a class="button button-primary" href={playUrl} target="_blank" rel="noopener">Google Play</a>
+    </div>
+  </section>
+</Layout>

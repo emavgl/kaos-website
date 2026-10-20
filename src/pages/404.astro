@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Page not found – KAOS" noindex={true}>
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>Lost in the chaos.</h1>
+      <p class="lede">That page does not exist.</p>
+      <div class="actions" style="justify-content: flex-start;">
+        <a class="button button-primary" href={base}>Back to KAOS</a>
+      </div>
+    </div>
+  </section>
+</Layout>

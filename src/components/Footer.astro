@@ -1,0 +1,33 @@
+---
+interface Props { base: string }
+const { base } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src={`${base}kaos-logo.svg`} alt="" class="brand-logo" width="32" height="32" />
+        <span>KAOS</span>
+      </div>
+      <p class="footer-copy">Tilt. Dodge. Survive. A fast one-thumb survival game for Android.</p>
+    </div>
+    <div>
+      <h2>Game</h2>
+      <ul>
+        <li><a href={base}>Overview</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=eu.viglianisi.kaos" target="_blank" rel="noopener">Google Play</a></li>
+        <li><a href={`${base}content-rating`}>Content rating</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Legal</h2>
+      <ul>
+        <li><a href={`${base}privacy-policy`}>Privacy policy</a></li>
+        <li><a href={`${base}data-safety`}>Data safety</a></li>
+        <li><a href={`${base}impressum`}>Impressum</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">© {year} · KAOS · Emanuele Viglianisi</div>
+</footer>

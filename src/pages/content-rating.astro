@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="Content Rating – KAOS" description="KAOS content rating summary: the game's content, questionnaire answers, and expected age rating.">
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Content rating</p>
+      <h1>Content rating.</h1>
+      <p class="lede">What KAOS contains, and the answers used for the Google Play / IARC content rating questionnaire.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <article class="container prose">
+      <p><strong>Last updated: October 2026.</strong></p>
+
+      <h2>About the game</h2>
+      <p>KAOS is a casual arcade survival game. You tilt a phone to roll a ball around an arena while wall segments disappear and fireballs and meteors fall. A run ends when the ball leaves the arena. The game also has optional online leaderboards where players show a nickname and a survival time.</p>
+
+      <h2>Questionnaire summary</h2>
+      <table>
+        <thead>
+          <tr><th>Category</th><th>Answer</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Violence</th><td>Mild / fantasy</td><td>The player avoids falling fireballs and meteors. No characters are harmed, and there is no blood, gore, or injury.</td></tr>
+          <tr><th>Fear / horror</th><td>Mild</td><td>Sudden meteors, crumbling walls, and screen shake. No horror themes, jump scares, or disturbing imagery.</td></tr>
+          <tr><th>Sexuality</th><td>None</td><td>No sexual content, nudity, or suggestive material.</td></tr>
+          <tr><th>Language</th><td>None</td><td>No profanity or offensive language.</td></tr>
+          <tr><th>Controlled substances</th><td>None</td><td>No alcohol, tobacco, or drug references.</td></tr>
+          <tr><th>Gambling</th><td>None</td><td>No real-money or simulated gambling, loot boxes, or wagering.</td></tr>
+          <tr><th>User interaction</th><td>Users can interact online</td><td>Optional leaderboards display a player-chosen nickname and score. There is no chat, messaging, or user-generated content beyond a 20-character nickname.</td></tr>
+          <tr><th>Shares location</th><td>No</td><td>The game does not collect or share location.</td></tr>
+          <tr><th>Digital purchases</th><td>No</td><td>KAOS currently has no in-app purchases or subscriptions.</td></tr>
+          <tr><th>Advertising</th><td>No</td><td>The game contains no ads.</td></tr>
+          <tr><th>Miscellaneous</th><td>None</td><td>No political, religious, or otherwise sensitive content.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Expected rating</h2>
+      <p>Based on the answers above, KAOS is expected to receive a rating suitable for all ages, such as <strong>Everyone</strong> (ESRB), <strong>PEGI 3</strong>, or the equivalent regional rating. The binding rating is the one issued by IARC after the questionnaire is completed in Play Console and may vary by country.</p>
+
+      <h2>Online features and safety</h2>
+      <ul>
+        <li>Leaderboards are optional; the game is fully playable offline.</li>
+        <li>Only a nickname and a score are shown. No account, email, or real name is required.</li>
+        <li>There is no chat, voice, or direct messaging between players.</li>
+        <li>No ads and no links to external stores or gambling services.</li>
+      </ul>
+
+      <p class="small-note">See also the <a href={`${base}privacy-policy`}>Privacy Policy</a> and <a href={`${base}data-safety`}>Data safety</a> page.</p>
+    </article>
+  </section>
+</Layout>
