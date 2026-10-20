@@ -30,22 +30,16 @@ const base = import.meta.env.BASE_URL;
       <h2>3. Data stored on your device</h2>
       <p>KAOS keeps a small amount of data in the app's private storage on your phone:</p>
       <ul>
-        <li>Your best score and current settings (nickname, audio level, score orientation, and leaderboard server address).</li>
-        <li>A randomly generated installation identifier used to associate leaderboard submissions with the same install.</li>
+        <li>Your best score and current settings (audio level and score orientation).</li>
       </ul>
-      <p>This data stays on your device until you clear the app's data or uninstall KAOS. We do not receive it unless you submit a score to a leaderboard.</p>
+      <p>This data stays on your device until you clear the app's data or uninstall KAOS. We do not receive it. If you use the optional leaderboards, your score is stored through Google Play Games Services as described below.</p>
 
       <h2>4. Tilt sensor</h2>
       <p>KAOS reads your device's motion/orientation sensor to steer the ball. Sensor readings are processed on your device in real time and are not recorded, stored, or transmitted.</p>
 
       <h2>5. Leaderboards (optional)</h2>
-      <p>When you choose to submit a score, KAOS sends the following to the leaderboard server:</p>
-      <ul>
-        <li>the nickname you entered (up to 20 characters),</li>
-        <li>your survival time / score,</li>
-        <li>the randomly generated installation identifier.</li>
-      </ul>
-      <p>The leaderboard server stores this to display weekly and all-time rankings to other players. No account, email address, or password is required. The nickname is public on the leaderboard, so do not use your real name if you do not want it shown. The official KAOS leaderboard server uses HTTPS. If you point the app at a server you run yourself, that server's operator is responsible for the data it receives.</p>
+      <p>KAOS uses Google Play Games Services for its optional leaderboards. When you choose to appear on the leaderboards, you sign in with your Google account through Play Games. Google processes your Play Games player name and your survival time / score to display weekly and all-time rankings, under Google's terms and privacy policy.</p>
+      <p>We do not operate a leaderboard server and do not receive your Google account details or your score. Your Play Games player name is visible to other players. If you do not want it shown, do not sign in to the leaderboards.</p>
 
       <h2>6. Sharing</h2>
       <p>KAOS can share your survival time through Android's share sheet. The text is handed to the app you choose (for example a messaging app); KAOS does not receive or store what you share.</p>
@@ -60,18 +54,18 @@ const base = import.meta.env.BASE_URL;
       <p>This website is a static site hosted on GitHub Pages. It does not use cookies, analytics, advertising, accounts, or a contact form. GitHub, as the hosting provider, may process technical request data (such as IP address, time, requested URL, and browser information) to deliver and protect the site, under GitHub's own privacy policy.</p>
 
       <h2>10. Children</h2>
-      <p>KAOS is a general-audience game and is not directed at children under 13. We do not knowingly collect personal information from children. Leaderboard participation is optional and requires only a nickname.</p>
+      <p>KAOS is a general-audience game and is not directed at children under 13. We do not knowingly collect personal information from children. Leaderboard participation is optional and requires a Google Play Games account, which is subject to Google's age requirements.</p>
 
       <h2>11. Retention and deletion</h2>
-      <p>Leaderboard entries remain on the server while the rankings are published. You can ask us to delete a leaderboard entry by emailing <a href="mailto:emavgl.app@gmail.com">emavgl.app@gmail.com</a> with the nickname and approximate score so we can find it. Local data is deleted when you clear the app's data or uninstall KAOS.</p>
+      <p>Leaderboard entries are stored by Google Play Games Services while the rankings are published. You can manage or delete your Play Games data through your Google account, and you can contact us at <a href="mailto:emavgl.app@gmail.com">emavgl.app@gmail.com</a> if you need help. Local data is deleted when you clear the app's data or uninstall KAOS.</p>
 
       <h2>12. Your rights</h2>
-      <p>Subject to applicable law, you may request access, rectification, erasure, restriction of processing, data portability, or object to processing. Contact the controller above. You may also complain to the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at/" target="_blank" rel="noopener noreferrer">Datenschutzbehörde</a>).</p>
+      <p>Subject to applicable law, you may request access, rectification, erasure, restriction of processing, data portability, or object to processing. Contact the controller above. Where data is processed by Google, you can also exercise your rights against Google. You may also complain to the Austrian Data Protection Authority (<a href="https://www.dsb.gv.at/" target="_blank" rel="noopener noreferrer">Datenschutzbehörde</a>).</p>
 
       <h2>13. Changes</h2>
       <p>This policy may be updated when the game, services, or legal requirements change. The current version is published on this page with its effective date.</p>
 
-      <p class="small-note">See also: <a href={`${base}data-safety`}>Data safety</a> and <a href={`${base}content-rating`}>Content rating</a>.</p>
+      <p class="small-note">See also: <a href={`${base}terms-of-service`}>Terms of service</a>, <a href={`${base}data-safety`}>Data safety</a>, and <a href={`${base}content-rating`}>Content rating</a>.</p>
     </article>
   </section>
 </Layout>
