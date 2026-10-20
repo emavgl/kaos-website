@@ -33,6 +33,7 @@ const features = [
 
 <Layout title="KAOS – Tilt. Dodge. Survive." description="KAOS is a fast arcade survival game for Android. Tilt your phone to roll the ball, dodge crumbling walls and fireballs, and survive the chaos.">
   <section class="hero">
+    <canvas class="meteor-field" aria-hidden="true"></canvas>
     <div class="container">
       <p class="eyebrow">An arcade survival game</p>
       <h1>KA<span class="accent">O</span>S</h1>
@@ -96,3 +97,168 @@ const features = [
     </div>
   </section>
 </Layout>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('.meteor-field');
+  const hero = canvas?.parentElement;
+  if (canvas && hero) {
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ROCK = [
+      [18, 2], [12, 16], [-4, 20], [-18, 10],
+      [-20, -4], [-14, -18], [2, -20], [16, -10],
+    ] as const;
+
+    type Particle = {
+      x: number; y: number; vx: number; vy: number;
+      life: number; max: number; size: number;
+    };
+    type Meteor = {
+      x: number; y: number; vx: number; vy: number;
+      scale: number; alpha: number; angle: number;
+      emit: number; parts: Particle[];
+    };
+
+    let width = 0;
+    let height = 0;
+    let meteors: Meteor[] = [];
+
+    const resize = () => {
+      const rect = hero.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed(rect.width < 620 ? 8 : 14);
+    };
+
+    const makeMeteor = (depth: number, anywhere: boolean): Meteor => ({
+      x: Math.random() * width,
+      y: anywhere ? Math.random() * height : -80 - Math.random() * 120,
+      vx: -40 + Math.random() * 80,
+      vy: 55 + depth * 115,
+      scale: 0.45 + depth * 0.9,
+      alpha: 0.18 + depth * 0.42,
+      angle: 0,
+      emit: 0,
+      parts: [],
+    });
+
+    const seed = (count: number) => {
+      meteors = Array.from({ length: count }, () => {
+        const depth = Math.random();
+        const m = makeMeteor(depth, false);
+        m.y = Math.random() * height;
+        return m;
+      });
+    };
+
+    const polygon = (points: readonly (readonly number[])[], scale: number) => {
+      ctx?.beginPath();
+      points.forEach(([x, y], i) => {
+        if (!ctx) return;
+        if (i === 0) ctx.moveTo(x * scale, y * scale);
+        else ctx.lineTo(x * scale, y * scale);
+      });
+      ctx?.closePath();
+    };
+
+    const draw = (dt: number) => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (const m of meteors) {
+        m.angle = Math.atan2(m.vy, m.vx) + Math.PI;
+
+        // Trail: emit little embers behind the rock.
+        m.emit += dt;
+        while (m.emit > 0.03) {
+          m.emit -= 0.03;
+          const spread = (Math.random() - 0.5) * 40;
+          const back = Math.atan2(-m.vy, -m.vx) + spread * 0.01;
+          const speed = 30 + Math.random() * 50;
+          m.parts.push({
+            x: m.x + (Math.random() - 0.5) * 8 * m.scale,
+            y: m.y + (Math.random() - 0.5) * 8 * m.scale,
+            vx: Math.cos(back) * speed + m.vx * 0.15,
+            vy: Math.sin(back) * speed + m.vy * 0.15,
+            life: 0.5,
+            max: 0.5,
+            size: (4 + Math.random() * 6) * m.scale,
+          });
+        }
+
+        // Embers fade out while drifting with the meteor.
+        for (const p of m.parts) {
+          p.life -= dt;
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          const t = Math.max(p.life / p.max, 0);
+          const alpha = t * t * m.alpha;
+          if (alpha <= 0.01) continue;
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = `rgba(255, ${Math.round(80 + 120 * t)}, ${Math.round(20 * t)}, 1)`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * (0.4 + 0.6 * t), 0, Math.PI * 2);
+          ctx.fill();
+        }
+        m.parts = m.parts.filter((p) => p.life > 0);
+
+        // Glow halo.
+        ctx.globalAlpha = m.alpha * 0.35;
+        const glow = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, 46 * m.scale);
+        glow.addColorStop(0, 'rgba(255, 130, 0, 0.55)');
+        glow.addColorStop(1, 'rgba(255, 80, 0, 0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 46 * m.scale, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Rock and magma core, rotated to the direction of travel.
+        ctx.save();
+        ctx.translate(m.x, m.y);
+        ctx.rotate(m.angle);
+        ctx.globalAlpha = m.alpha;
+        ctx.fillStyle = '#593a26';
+        polygon(ROCK, m.scale);
+        ctx.fill();
+        ctx.fillStyle = '#ff730d';
+        polygon(ROCK, m.scale * 0.55);
+        ctx.fill();
+        ctx.restore();
+
+        if (!reduceMotion) {
+          m.x += m.vx * dt;
+          m.y += m.vy * dt;
+        }
+
+        if (m.y > height + 120 || m.x < -140 || m.x > width + 140) {
+          const depth = Math.random();
+          Object.assign(m, makeMeteor(depth, false));
+          m.parts = [];
+        }
+      }
+
+      ctx.globalAlpha = 1;
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    if (reduceMotion) {
+      draw(0);
+    } else {
+      let last = performance.now();
+      const tick = (now: number) => {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        draw(dt);
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+</script>
+
