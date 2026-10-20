@@ -123,15 +123,25 @@ const features = [
     let width = 0;
     let height = 0;
     let meteors: Meteor[] = [];
+    let seeded = false;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const nextWidth = window.innerWidth;
+      const nextHeight = window.innerHeight;
+      if (nextWidth === width && nextHeight === height) return;
+      width = nextWidth;
+      height = nextHeight;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
-      seed(width < 620 ? 4 : 6);
+      // Only seed on the first sizing. Mobile browsers fire `resize` when the
+      // URL bar is shown/hidden while scrolling; reseeding here would restart
+      // the whole animation on every scroll.
+      if (!seeded) {
+        seed(width < 620 ? 4 : 6);
+        seeded = true;
+      }
     };
 
     const makeMeteor = (depth: number, anywhere: boolean): Meteor => ({
