@@ -14,11 +14,11 @@ const features = [
   },
   {
     title: 'Leaderboards',
-    body: 'Climb the weekly and all-time rankings. Pick a nickname, post a run, and see who else is still alive.',
+    body: 'Climb the weekly and season 1 rankings. Sign in with Play Games and post your best run.',
   },
   {
     title: 'Share your run',
-    body: 'Send your survival time to friends and challenge them to beat it.',
+    body: 'Send your wall-touch score to friends and challenge them to beat it.',
   },
   {
     title: 'Quick sessions',
@@ -31,7 +31,7 @@ const features = [
 ];
 ---
 
-<Layout title="KAOS – Tilt. Dodge. Survive." description="KAOS is a fast arcade survival game for Android. Tilt your phone to roll the ball, dodge crumbling walls and fireballs, and survive the chaos.">
+<Layout title="KAOS – Tilt. Dodge. Survive." description="KAOS is a fast arcade game for Android. Tilt your phone to roll the ball, touch new wall segments to score, dodge crumbling walls and fireballs, and survive the chaos.">
   <canvas class="meteor-field" aria-hidden="true"
     style="position:fixed;inset:0;display:block;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
 
@@ -39,7 +39,7 @@ const features = [
     <div class="container">
       <p class="eyebrow">An arcade survival game</p>
       <h1>KA<span class="accent">O</span>S</h1>
-      <p class="lede">Tilt to roll. Dodge crumbling walls and fireballs. Survive the chaos for as long as you can.</p>
+      <p class="lede">Tilt to roll. Touch new wall segments to score. Dodge crumbling walls and fireballs and survive the chaos.</p>
       <div class="actions">
         <a class="button button-primary" href={playUrl} target="_blank" rel="noopener">Get it on Google Play</a>
         <a class="button button-secondary" href={`${base}#how-to-play`}>How to play</a>
@@ -49,8 +49,8 @@ const features = [
 
   <div class="shots">
     <img src={`${base}screenshots/menu.jpg`} alt="KAOS main menu" width="1440" height="3120" loading="lazy" />
-    <img src={`${base}screenshots/gameplay-26.jpg`} alt="KAOS gameplay with a 26 second run" width="1440" height="3120" loading="lazy" />
-    <img src={`${base}screenshots/gameplay-19.jpg`} alt="KAOS gameplay with a 19 second run" width="1440" height="3120" loading="lazy" />
+    <img src={`${base}screenshots/gameplay-26.jpg`} alt="KAOS gameplay with a wall-touch score of 26" width="1440" height="3120" loading="lazy" />
+    <img src={`${base}screenshots/gameplay-19.jpg`} alt="KAOS gameplay with a wall-touch score of 19" width="1440" height="3120" loading="lazy" />
   </div>
 
   <section class="section" id="how-to-play">
@@ -80,7 +80,7 @@ const features = [
         <ol>
           <li>Tilt your phone to move the ball in any direction.</li>
           <li>The ball stays still when the phone is flat.</li>
-          <li>You only score while touching a wall segment.</li>
+          <li>Every new wall segment you touch adds a point.</li>
           <li>The segment you touch starts disappearing — move to another.</li>
           <li>Meteors fly in from the corners. Dodge them.</li>
           <li>Walls vanish in bigger chunks as time goes on, and random earthquakes shake the screen.</li>
@@ -92,7 +92,7 @@ const features = [
   <section class="cta">
     <div class="container cta-inner">
       <div>
-        <h2>How long can you survive the chaos?</h2>
+        <h2>How many walls can you touch before the chaos wins?</h2>
         <p>Download KAOS and find out.</p>
       </div>
       <a class="button button-primary" href={playUrl} target="_blank" rel="noopener">Google Play</a>
